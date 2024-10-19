@@ -7,6 +7,9 @@
     "build": "remix vite:build",
     "dev": "remix vite:dev",
     "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
+    "stylelint": "stylelint '**/*.css'",
+    "lint:fix": "pnpm lint --fix && pnpm stylelint --fix",
+    "format": "prettier --write .",
     "preview": "vite preview",
     "typecheck": "tsc",
     "deploy:hosting": "pnpm build && firebase deploy --project default"
