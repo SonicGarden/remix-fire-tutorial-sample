@@ -1,13 +1,20 @@
 import '@mantine/core/styles.css';
 import './tailwind.css';
+import { Center, Title } from '@mantine/core';
 import {
+  isRouteErrorResponse,
   Links,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
+  useRouteError,
 } from '@remix-run/react';
-import { ColorSchemeScript, MantineProvider } from '~/utils/mantine/provider';
+import { LoadingScreen } from '~/components/screens/LoadingScreen';
+import {
+  ColorSchemeScript,
+  MantineProvider,
+} from '~/utils/mantine/provider';
 import type { LinksFunction } from '@remix-run/node';
 
 export const links: LinksFunction = () => [
@@ -52,5 +59,20 @@ export default function App() {
 }
 
 export function HydrateFallback() {
-  return <p>Loading...</p>;
+  return <LoadingScreen />;
+}
+
+export function ErrorBoundary() {
+  const error = useRouteError();
+  const errorMessage =
+    (isRouteErrorResponse(error) && error.statusText) ??
+    'An Error Occurred';
+
+  return (
+    <Center h={100}>
+      <Title order={1} size='h5'>
+        {errorMessage}
+      </Title>
+    </Center>
+  );
 }
