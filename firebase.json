@@ -7,7 +7,8 @@
         "source": "**",
         "destination": "/index.html"
       }
-    ]
+    ],
+    "predeploy": ["rm -rf .firebase"]
   },
   "functions": [
     {
@@ -21,8 +22,16 @@
         "*.local"
       ],
       "predeploy": [
-        "npm --prefix \"$RESOURCE_DIR\" run lint",
-        "npm --prefix \"$RESOURCE_DIR\" run build"
+        "pnpm functions lint",
+        "pnpm build:shared",
+        "pnpm shared pack --pack-destination ../../functions",
+        "pnpm functions add ./local-shared-1.0.0.tgz",
+        "pnpm functions build"
+      ],
+      "postdeploy": [
+        "rm -rf functions/local-shared-1.0.0.tgz",
+        "pnpm functions remove @local/shared",
+        "pnpm functions add @local/shared"
       ]
     }
   ]
