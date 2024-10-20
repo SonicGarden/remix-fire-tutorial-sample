@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "functions": "pnpm --dir functions",
+    "shared": "pnpm --dir packages/shared",
     "build": "remix vite:build",
     "dev": "remix vite:dev",
     "lint:hosting": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
