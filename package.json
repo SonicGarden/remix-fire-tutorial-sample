@@ -20,6 +20,7 @@
     "deploy:functions": "pnpm functions deploy:default"
   },
   "dependencies": {
+    "@local/shared": "workspace:^",
     "@remix-run/node": "^2.13.1",
     "@remix-run/react": "^2.13.1",
     "isbot": "^4",
