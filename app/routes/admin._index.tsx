@@ -1,7 +1,7 @@
-import { replace } from '@remix-run/react';
+import { replace } from '@remix-run/node';
 import { AdminRoot } from '~/components/pages/admin/AdminRoot';
 
-export async function clientLoader() {
+export async function loader() {
   return replace('/admin/books');
 }
 

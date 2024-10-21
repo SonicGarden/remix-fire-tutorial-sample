@@ -1,7 +1,7 @@
-import { replace } from '@remix-run/react';
+import { replace } from '@remix-run/node';
 import { LoadingScreen } from '~/components/screens/LoadingScreen';
 
-export async function clientLoader() {
+export async function loader() {
   return replace('/books');
 }
 

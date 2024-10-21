@@ -24,7 +24,7 @@ import {
 import type { LinksFunction } from '@remix-run/node';
 import type { FirebaseOptions } from 'firebase/app';
 
-export async function clientLoader() {
+export async function loader() {
   return json(firebaseConfig());
 }
 
