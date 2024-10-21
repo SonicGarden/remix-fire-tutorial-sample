@@ -3,6 +3,7 @@ import { IconEdit, IconTrash } from '@tabler/icons-react';
 import { useState, useCallback } from 'react';
 import { UnstyledConfirmButton } from '~/components/elements/UnstyledConfirmButton';
 import { UnstyledModalButton } from '~/components/elements/UnstyledModalButton';
+import { UpdateBookForm } from '~/components/forms/book/UpdateBookForm';
 import { deleteBook } from '~/models/book';
 import { notify } from '~/utils/mantine/notifications';
 import type { Book as BookType } from '@local/shared';
@@ -30,7 +31,13 @@ export const Book = ({ book }: { book: BookType }) => {
             variant='white'
             color='secondary'
             component={UnstyledModalButton}
-            modalContent={() => '更新フォーム'}
+            modalContent={({ close }) => (
+              <UpdateBookForm
+                book={book}
+                onSubmit={close}
+                onCancel={close}
+              />
+            )}
             modalProps={{ title: '書籍' }}
           >
             <IconEdit />
