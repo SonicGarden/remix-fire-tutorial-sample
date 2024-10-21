@@ -21,7 +21,7 @@
     "typecheck": "tsc",
     "deploy:hosting": "pnpm build && firebase deploy --except functions --project default",
     "deploy:functions": "pnpm functions deploy:default",
-    "deploy:rules": "firebase deploy --only firestore:rules --project default",
+    "deploy:rules": "firebase deploy --only firestore:rules,storage --project default",
     "tsx": "tsx --env-file=scripts/.env"
   },
   "dependencies": {
