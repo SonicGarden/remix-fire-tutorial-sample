@@ -1,7 +1,12 @@
 import { getAuth } from 'firebase-admin/auth';
 import { getFirestore } from 'firebase-admin/firestore';
-import { getConverter, getDocumentData } from '../utils/firebase';
+import {
+  getConverter,
+  getDocumentData,
+  serverTimestamp,
+} from '../utils/firebase';
 import type { UserDocumentData } from '@local/shared';
+import type { DocumentReference } from 'firebase-admin/firestore';
 
 const userConverter = getConverter<UserDocumentData>();
 
@@ -37,4 +42,29 @@ const getUser = async ({ uid }: { uid: string }) => {
   return data;
 };
 
-export { userConverter, usersRef, userRef, getAuthUser, getUser };
+export const createFirestoreUser = async (
+  ref: DocumentReference<UserDocumentData>,
+  data: Omit<UserDocumentData, 'createdAt' | 'updatedAt'>,
+) =>
+  ref.create({
+    createdAt: serverTimestamp(),
+    updatedAt: serverTimestamp(),
+    ...data,
+  });
+
+const createAdminUser = async (email: string) => {
+  const auth = getAuth();
+  const user = await auth.createUser({ email, emailVerified: true });
+  await auth.setCustomUserClaims(user.uid, { role: 'admin' });
+  await createFirestoreUser(userRef(user.uid), { email, role: 'admin' });
+  return { uid: user.uid };
+};
+
+export {
+  userConverter,
+  usersRef,
+  userRef,
+  getAuthUser,
+  getUser,
+  createAdminUser,
+};
