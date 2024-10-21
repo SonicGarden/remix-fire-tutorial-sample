@@ -6,6 +6,7 @@ export const usePermissions = () => {
   const validatePathPermission = useCallback(
     (path: string) => {
       if (/^\/admin\/?$/.test(path) && role === 'admin') return true;
+      if (/^\/admin\/books\/?$/.test(path) && role === 'admin') return true;
       return false;
     },
     [role],
