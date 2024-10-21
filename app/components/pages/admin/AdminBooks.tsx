@@ -9,6 +9,7 @@ import {
 } from '@mantine/core';
 import { IconSquareRoundedPlus } from '@tabler/icons-react';
 import { UnstyledModalButton } from '~/components/elements/UnstyledModalButton';
+import { CreateBookForm } from '~/components/forms/book/CreateBookForm';
 import { useCollectionData } from '~/hooks/useCollectionData';
 import { booksQuery } from '~/models/book';
 import { Book } from './_components/Book';
@@ -28,7 +29,9 @@ export const AdminBooks = () => {
             <ActionIcon
               variant='white'
               component={UnstyledModalButton}
-              modalContent={() => '新規作成フォーム'}
+              modalContent={({ close }) => (
+                <CreateBookForm onSubmit={close} onCancel={close} />
+              )}
               modalProps={{ title: '書籍' }}
             >
               <IconSquareRoundedPlus />
