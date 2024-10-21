@@ -75,7 +75,9 @@ export const SignUpForm = ({ onSubmit }: { onSubmit?: () => void }) => {
           variant='outline'
           aria-label='サインアップ'
           loading={loading}
-        ></LoadingOverlayButton>
+        >
+          サインアップ
+        </LoadingOverlayButton>
       </Group>
     </form>
   );
