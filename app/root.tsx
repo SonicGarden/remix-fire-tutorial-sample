@@ -1,4 +1,5 @@
 import '@mantine/core/styles.css';
+import '@mantine/notifications/styles.css';
 import './tailwind.css';
 import { Center, Title } from '@mantine/core';
 import {
