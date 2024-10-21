@@ -21,7 +21,8 @@
     "typecheck": "tsc",
     "deploy:hosting": "pnpm build && firebase deploy --except functions --project default",
     "deploy:functions": "pnpm functions deploy:default",
-    "deploy:rules": "firebase deploy --only firestore:rules --project default"
+    "deploy:rules": "firebase deploy --only firestore:rules --project default",
+    "tsx": "tsx --env-file=scripts/.env"
   },
   "dependencies": {
     "@local/shared": "workspace:^",
@@ -46,6 +47,7 @@
     "@typescript-eslint/eslint-plugin": "^6.7.4",
     "@typescript-eslint/parser": "^6.7.4",
     "autoprefixer": "^10.4.19",
+    "commander": "^12.1.0",
     "eslint": "^8.38.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-import-resolver-typescript": "^3.6.1",
@@ -53,6 +55,7 @@
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "firebase-admin": "^12.6.0",
     "postcss": "^8.4.47",
     "postcss-preset-mantine": "^1.17.0",
     "postcss-simple-vars": "^7.0.1",
@@ -62,9 +65,11 @@
     "stylelint-config-standard": "^36.0.1",
     "stylelint-order": "^6.0.4",
     "tailwindcss": "^3.4.4",
+    "tsx": "^4.19.1",
     "typescript": "^5.1.6",
     "vite": "^5.1.0",
-    "vite-tsconfig-paths": "^4.2.1"
+    "vite-tsconfig-paths": "^4.2.1",
+    "yesno": "^0.4.0"
   },
   "engines": {
     "node": ">=20.0.0"

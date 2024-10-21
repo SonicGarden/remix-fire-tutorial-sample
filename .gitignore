@@ -7,3 +7,7 @@ node_modules
 
 .firebase
 *-debug.log
+
+# scripts
+scripts/google_application_credentials/*
+!scripts/google_application_credentials/.gitkeep
