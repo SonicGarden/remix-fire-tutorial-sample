@@ -20,9 +20,11 @@
     "preview": "vite preview",
     "typecheck": "tsc",
     "deploy:hosting": "pnpm build && firebase deploy --except functions --project default",
+    "deploy:cloudrun": "pnpm build && gcloud run deploy remix-firebase-tutorial-sample --project remix-fire-tutorial-sample --region asia-northeast1 --memory 1Gi --source .",
     "deploy:functions": "pnpm functions deploy:default",
     "deploy:rules": "firebase deploy --only firestore:rules,storage --project default",
-    "tsx": "tsx --env-file=scripts/.env"
+    "tsx": "tsx --env-file=scripts/.env",
+    "start": "remix-serve build/server/index.js"
   },
   "dependencies": {
     "@local/shared": "workspace:^",
