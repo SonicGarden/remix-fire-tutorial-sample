@@ -18,12 +18,13 @@
     "typecheck": "tsc",
     "deploy:hosting": "pnpm build && firebase deploy --except functions --project default",
     "deploy:functions": "pnpm functions deploy:default",
-    "deploy:rules": "firebase deploy --only firestore:rules --project default",
+    "deploy:rules": "firebase deploy --only firestore:rules,storage --project default",
     "tsx": "tsx --env-file=scripts/.env"
   },
   "dependencies": {
     "@local/shared": "workspace:^",
     "@mantine/core": "^7.13.3",
+    "@mantine/dropzone": "^7.13.3",
     "@mantine/form": "^7.13.3",
     "@mantine/hooks": "^7.13.3",
     "@mantine/modals": "^7.13.3",

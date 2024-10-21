@@ -1,3 +1,5 @@
+import { LoadingScreen } from '~/components/screens/LoadingScreen';
+
 export const AdminRoot = () => {
-  return <div>AdminRoot</div>;
+  return <LoadingScreen />;
 };
