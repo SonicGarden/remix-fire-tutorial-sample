@@ -1,3 +1,13 @@
+import { useNavigate } from '@remix-run/react';
+import { useEffect } from 'react';
+import { LoadingScreen } from '~/components/screens/LoadingScreen';
+
 export const AdminRoot = () => {
-  return <div>AdminRoot</div>;
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    navigate('/admin/books', { replace: true });
+  }, [navigate]);
+
+  return <LoadingScreen />;
 };
