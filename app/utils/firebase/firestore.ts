@@ -1,8 +1,13 @@
 import {
   collection,
+  deleteDoc,
   doc,
   getFirestore,
+  orderBy,
+  query,
   serverTimestamp as _serverTimestamp,
+  setDoc,
+  updateDoc,
   Timestamp,
 } from 'firebase/firestore';
 import type { WithId } from '@local/shared';
@@ -30,9 +35,14 @@ const serverTimestamp = _serverTimestamp as unknown as () => Timestamp;
 
 export {
   collection,
+  deleteDoc,
   doc,
   getConverter,
   getFirestore,
+  orderBy,
+  query,
   serverTimestamp,
+  setDoc,
+  updateDoc,
   Timestamp,
 };
