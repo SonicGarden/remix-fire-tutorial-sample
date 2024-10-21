@@ -5,19 +5,22 @@
   "type": "module",
   "scripts": {
     "functions": "pnpm --dir functions",
-    "build": "remix vite:build",
+    "shared": "pnpm --dir packages/shared",
+    "build": "pnpm build:shared && remix vite:build",
+    "build:shared": "pnpm shared build",
     "dev": "remix vite:dev",
     "lint:hosting": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
     "stylelint": "stylelint '**/*.css'",
-    "lint": "pnpm lint:hosting && pnpm stylelint && pnpm functions lint",
-    "lint:fix": "pnpm lint:hosting --fix && pnpm stylelint --fix && pnpm functions lint:fix",
-    "format": "prettier --write . && pnpm functions format",
+    "lint": "pnpm lint:hosting && pnpm stylelint && pnpm functions lint && pnpm shared lint",
+    "lint:fix": "pnpm lint:hosting --fix && pnpm stylelint --fix && pnpm functions lint:fix && pnpm shared lint:fix",
+    "format": "prettier --write . && pnpm functions format && pnpm shared format",
     "preview": "vite preview",
     "typecheck": "tsc",
     "deploy:hosting": "pnpm build && firebase deploy --except functions --project default",
     "deploy:functions": "pnpm functions deploy:default"
   },
   "dependencies": {
+    "@local/shared": "workspace:^",
     "@remix-run/node": "^2.13.1",
     "@remix-run/react": "^2.13.1",
     "isbot": "^4",
@@ -54,5 +57,12 @@
   },
   "volta": {
     "node": "20.17.0"
+  },
+  "pnpm": {
+    "updateConfig": {
+      "ignoreDependencies": [
+        "eslint"
+      ]
+    }
   }
 }
