@@ -27,6 +27,7 @@
   "dependencies": {
     "@local/shared": "workspace:^",
     "@mantine/core": "^7.13.3",
+    "@mantine/dropzone": "^7.13.3",
     "@mantine/form": "^7.13.3",
     "@mantine/hooks": "^7.13.3",
     "@mantine/modals": "^7.13.3",
