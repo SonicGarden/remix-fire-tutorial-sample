@@ -16,7 +16,7 @@
     "format": "prettier --write . && pnpm functions format && pnpm shared format",
     "preview": "vite preview",
     "typecheck": "tsc",
-    "deploy:hosting": "pnpm build && firebase deploy --except functions --project default",
+    "deploy:hosting": "firebase deploy --except functions --project default",
     "deploy:cloudrun": "pnpm build && gcloud run deploy remix-firebase-tutorial-sample --project remix-fire-tutorial-sample --region asia-northeast1 --memory 1Gi --source .",
     "deploy:functions": "pnpm functions deploy:default",
     "deploy:rules": "firebase deploy --only firestore:rules,storage --project default",
