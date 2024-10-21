@@ -2,6 +2,7 @@ import '@mantine/core/styles.css';
 import './tailwind.css';
 import { Center, Title } from '@mantine/core';
 import {
+  json,
   isRouteErrorResponse,
   Links,
   Meta,
@@ -9,13 +10,21 @@ import {
   Scripts,
   ScrollRestoration,
   useRouteError,
+  useLoaderData,
 } from '@remix-run/react';
 import { LoadingScreen } from '~/components/screens/LoadingScreen';
+import { initializeApp } from '~/utils/firebase/app';
+import { firebaseConfig } from '~/utils/firebase/config';
 import {
   ColorSchemeScript,
   MantineProvider,
 } from '~/utils/mantine/provider';
 import type { LinksFunction } from '@remix-run/node';
+import type { FirebaseOptions } from 'firebase/app';
+
+export async function clientLoader() {
+  return json(firebaseConfig());
+}
 
 export const links: LinksFunction = () => [
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -55,6 +64,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
+  const config = useLoaderData<FirebaseOptions>();
+  initializeApp(config);
+
   return <Outlet />;
 }
 
