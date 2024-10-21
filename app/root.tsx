@@ -2,7 +2,7 @@ import '@mantine/core/styles.css';
 import '@mantine/notifications/styles.css';
 import '@mantine/dropzone/styles.css';
 import './tailwind.css';
-import { Center, Title } from '@mantine/core';
+import { Center, LoadingOverlay, Title } from '@mantine/core';
 import {
   json,
   isRouteErrorResponse,
@@ -13,6 +13,7 @@ import {
   ScrollRestoration,
   useRouteError,
   useLoaderData,
+  useNavigation,
 } from '@remix-run/react';
 import { LoadingScreen } from '~/components/screens/LoadingScreen';
 import { initializeApp } from '~/utils/firebase/app';
@@ -24,7 +25,7 @@ import {
 import type { LinksFunction } from '@remix-run/node';
 import type { FirebaseOptions } from 'firebase/app';
 
-export async function clientLoader() {
+export async function loader() {
   return json(firebaseConfig());
 }
 
@@ -67,9 +68,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
 export default function App() {
   const config = useLoaderData<FirebaseOptions>();
+  const navigation = useNavigation();
   initializeApp(config);
 
-  return <Outlet />;
+  return (
+    <>
+      <LoadingOverlay visible={navigation.state === 'loading'} />
+      <Outlet />
+    </>
+  );
 }
 
 export function HydrateFallback() {

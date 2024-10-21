@@ -1,19 +1,14 @@
 {
   "hosting": {
-    "public": "build/client",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
       {
         "source": "**",
-        "destination": "/index.html"
+        "run": {
+          "serviceId": "remix-firebase-tutorial-sample",
+          "region": "asia-northeast1"
+        }
       }
-    ],
-    "predeploy": [
-      "rm -rf .firebase"
     ]
   },
   "functions": [
