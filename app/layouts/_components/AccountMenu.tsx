@@ -40,6 +40,12 @@ export const AccountMenu = () => {
       ) : (
         <>
           <NavLink
+            label='サインイン'
+            component={Link}
+            to={{ pathname: 'sign-in', search: `?redirect=${currentPath}` }}
+            replace
+          />
+          <NavLink
             label='サインアップ'
             component={Link}
             to={{ pathname: 'sign-up', search: `?redirect=${currentPath}` }}
