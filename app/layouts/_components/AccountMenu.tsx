@@ -44,12 +44,14 @@ export const AccountMenu = () => {
             component={Link}
             to={{ pathname: 'sign-in', search: `?redirect=${currentPath}` }}
             replace
+            prefetch='viewport'
           />
           <NavLink
             label='サインアップ'
             component={Link}
             to={{ pathname: 'sign-up', search: `?redirect=${currentPath}` }}
             replace
+            prefetch='viewport'
           />
         </>
       )}
