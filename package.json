@@ -20,7 +20,8 @@
     "preview": "vite preview",
     "typecheck": "tsc",
     "deploy:hosting": "pnpm build && firebase deploy --except functions --project default",
-    "deploy:functions": "pnpm functions deploy:default"
+    "deploy:functions": "pnpm functions deploy:default",
+    "deploy:rules": "firebase deploy --only firestore:rules --project default"
   },
   "dependencies": {
     "@local/shared": "workspace:^",
